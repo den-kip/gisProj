@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="add_buttons">
+
+    <div class="button-group">
+      <a href="{% url 'display_ngo' %}" class="btn btn-primary btn-md btn-trim" role="button"> NGO</a>
+      <a href="{% url 'add_ngo' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_ngoprojs' %}" class="btn btn-primary btn-md btn-trim" role="button"> PROJECT</a>
+      <a href="{% url 'add_ngoprojs' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_donor' %}" class="btn btn-primary btn-md btn-trim" role="button"> DONOR</a>
+      <a href="{% url 'add_donor' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_institutions' %}" class="btn btn-primary btn-md btn-trim" role="button"> INSTITUTIONS</a>
+      <a href="{% url 'add_institutions' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+      <a href="{% url 'display_aof' %}" class="btn btn-primary btn-md btn-trim" role="button"> AOF</a>
+      <a href="{% url 'add_aof' %}" class="btn btn-warning btn-sm btn-pad" role="button"> +</a>
+
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <h4>Currently Viewing {{ header }}</h4>
+  </div>
+
+  <table class="table table-hover">
+    <time>NGOS</time>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>NGO_ID</th>
+        <th>NGO_NAME</th>
+        <th>SECTOR_ID</th>
+        <th>INSTIT_ID</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>lat</th>
+        <th>lon</th>
+        <th>geom</th>
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+
+      {% for NGO in NGOS %}
+
+      <tr>
+        <td>{{ NGO.id }}
+        <td>{{ NGO.NGO_ID.pk }}</td>
+        <td>{{ NGO.NGO_NAME }} </td>
+        <td>{{ NGO.SECTOR_ID.fk }}</td>
+        <td>{{ NGO.INSTIT_ID.fk }}</td>
+        <td>{{ NGO.Contact }}</td>
+        <td>{{ NGO.Email }}</td>
+        <td>{{ NGO.lat }}</td>
+        <td>{{ NGO.lon }}</td>
+        <td>{{ NGO.geom }}</td>
+
+        {% for header|lower == "NGOS" %}
+        <td>
+            <a href="{% url 'edit_laptop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_laptop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+        </tr>
+
+    </tbody>
+  </table>
+
+
+ <table class="table table-hover">
+    <time>Ngoprojs</time>
+    <thead>
+      <tr>
+         <th>id</th>
+        <th>project_id</th>
+        <th> project_na</th>
+        <th>org_interv</th>
+        <th>donor_id</th>
+        <th>sectors_ID</th>
+        <th>start_date</th>
+        <th> end_date</th>
+        <th>lat</th>
+        <th>lon</th>
+        <th>Geographic</th>
+        <th>budget_num</th>
+        <th>budget_cur</th>
+        <th>geom</th>
+
+
+
+      </tr>
+    </thead>
+
+
+
+    <tbody>
+
+      {% for Ngoproj in Ngoprojs %}
+
+      <tr>
+        <td>{{ Ngoproj.id }}
+        <td>{{ Ngoproj.project_id.pk }}</td>
+        <td>{{ Ngoproj.project_na }} </td>
+        <td>{{ Ngoproj.org_interv.fk }}</td>
+        <td>{{ Ngoproj.donor_id.fk }}</td>
+        <td>{{ Ngoproj.sectors_ID.fk }}</td>
+        <td>{{ Ngoproj.start_date }}</td>
+        <td>{{ Ngoproj.end_date}}</td>
+        <td>{{ Ngoproj.lat}}</td>
+        <td>{{ Ngoproj.lon }}</td>
+        <td>{{ Ngoproj.Geographic }}</td>
+        <td>{{ Ngoproj.budget_num }}</td>
+        <td>{{ Ngoproj.budget_cur }}</td>
+        <td>{{ Ngoproj.geom }}</td>
+
+
+
+
+        {% for header|lower == "PROJECT" %}  
+        <td>
+            <a href="{% url 'edit_desktop' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_desktop' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+       
+</tr>
+
+    </tbody>
+  </table>
+<br>
+
+
+</br>
+
+
+<table class="table table-hover">
+    <time>DONOR</time>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>DONOR_ID</th>
+        <th>NAME</th>
+        <th>NGO_ID</th>
+        <th></th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+
+      {% for DONOR in DONORS %}
+
+      <tr>
+        <td>{{ DONOR.id }}</td>
+        <td>{{ DONOR.DONOR_ID.pk }}</td>
+        <td>{{ DONOR.NAME }}</td>
+        <td>{{ DONOR.NGO_ID.fk }} $</td>
+  
+
+
+
+        {% for header|lower == "DONOR" %}
+        <td>
+            <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_mobile' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+</tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+<table class="table table-hover">
+    <time>INSTITUTION</time>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>INSTITUTION_ID</th>
+        <th>NAME</th>
+        <th>CONTACT</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for INSTITUTION in INSTITUTIONS %}
+
+      <tr>
+        <td>{{ INSTITUTION.id }}</td>
+        <td>{{ INSTITUTION.INSTITUTION_ID.pk }}</td>
+        <td>{{ INSTITUTION.NAME }}</td>
+        <td>{{ INSTITUTION.NGO_ID.fk }} $</td>
+  
+
+
+
+        {% for header|lower == " INSTITUTION" %}
+        <td>
+            <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_mobile' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+</tr>
+
+      
+    </tbody>
+  </table>
+
+
+  <table class="table table-hover">
+    <time>AOF</time>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>SECTOR_ID</th>
+        <th>SECTOR_NAME</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      {% for AOF in AOFS %}
+
+      <tr>
+        <td>{{ AOF.id }}</td>
+        <td>{{ AOF.SECTOR_ID.pk }}</td>
+        <td>{{ AOF.SECTOR_NAME }}$</td>
+          
+
+
+
+        {% for header|lower == "AOF" %}
+        <td>
+            <a href="{% url 'edit_mobile' item.pk %}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" > Edit</a>
+            <a href="{% url 'delete_mobile' item.pk%}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" > x</a>
+        </td>
+
+</tr>
+
+      
+    </tbody>
+  </table>
+
+
+
+
+{% endblock %}
