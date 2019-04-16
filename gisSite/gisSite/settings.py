@@ -25,7 +25,7 @@ SECRET_KEY = 'smew)yw6k&7#r85lu(ko)i-3lk3gm+img9n4lnl64*o^zjqt@w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 # ALLOWED_HOSTS = ['gisappproj.herokuapp.com']
 
 
