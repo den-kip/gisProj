@@ -8,7 +8,13 @@ def login(request):
 # 	return render(request, 'gisApp/index.html')
 
 def home(request):
-	return render(request, 'gisApp/index.html', {'title':'Home'})
+	return render(request, 'gisApp/index.html')
+
+def donors(request):
+	return render(request, 'gisApp/donor.html')
+
+def inst(request):
+	return render(request, 'gisApp/inst.html')
 
 def subcounty_datasets(request):
     subcounties = serialize('geojson' , Subcounties.objects.all())

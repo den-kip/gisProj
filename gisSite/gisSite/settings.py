@@ -25,7 +25,8 @@ SECRET_KEY = 'smew)yw6k&7#r85lu(ko)i-3lk3gm+img9n4lnl64*o^zjqt@w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 # ALLOWED_HOSTS = ['gisappproj.herokuapp.com']
 
 
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -122,6 +123,8 @@ USE_TZ = True
 
 # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+
+LOGIN_REDIRECT_URL = 'user_home'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

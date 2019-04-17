@@ -3,38 +3,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> NGO MAPPING </title>
+    <title> NGO-GIS </title>
   </head>
 
-  <link rel="stylesheet" type="text/css" href="{% static 'gisApp/staticGis/css/style.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'gisApp/staticGis/css/bootstrap.min.css' %}"/>
+  <link rel ="stylesheet" type="text/css" href="{% static 'gisApp/staticGis/leafletGroupedLayerControl/leaflet.groupedlayercontrol.min.css' %}">
+
+  <script type="text/javascript" src="{% static 'gisApp/staticGis/js/jquery.js' %}" ></script>
+  <script type="text/javascript" src="{% static 'gisApp/staticGis/js/bootstrap.min.js' %}" ></script>
+  <script type="text/javascript " src="{% static 'gisApp/staticGis/dist/leaflet.ajax.js' %}"></script>
+  <script type="text/javascript " src="{% static 'gisApp/staticGis/leafletGroupedLayerControl/leaflet.groupedlayercontrol.min.js' %}"></script>
 
   <body>
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Nairobi County</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'user_home' %}">NGO-GIS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarsExample02">
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'user_home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" >Tables <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search">
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'user_home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tables
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'user_home' %}">NGO</a>
+            <!-- <div class="dropdown-divider"></div> -->
+            <a class="dropdown-item" href="{% url 'donors' %}">Donor</a>
+            <!-- <div class="dropdown-divider"></div> -->
+            <a class="dropdown-item" href="{% url 'inst' %}">Institutions</a>
+          </div>
+        </li>
+      </ul>
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'login' %}">Search</button>
+
+          <!-- <button class="btn btn-danger my-2 my-sm-0">LOGOUT</button> -->
     </form>
-  </div>
-</nav>
+    <ul class="nav navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">Logout</a>
+              </li>
+          </ul>
+    
+</div>
+  </nav>
 
     <br>
     <div class="container">
@@ -47,4 +67,5 @@
     </div>
 
   </body>
+
 </html>
