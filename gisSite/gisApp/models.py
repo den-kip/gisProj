@@ -42,11 +42,12 @@ class Subcounties(models.Model):
 
 
 class Ngoprojs(models.Model):
-    project_id = models.FloatField(max_length=20, null=True)
+    # project_id = models.FloatField(max_length=20, null=True)
+    PROJECT_ID = models.IntegerField()
     project_na = models.CharField(max_length=200)
-    org_interv = models.FloatField(max_length=50)
-    donor_id = models.FloatField(max_length=50)
-    sectors_ID = models.FloatField(max_length=50)
+    INSTIT_ID = models.IntegerField()
+    DONOR_ID = models.IntegerField()
+    SECTOR_ID = models.IntegerField()
     start_date = models.CharField(max_length=50)
     end_date = models.CharField(max_length=50)
     lat = models.FloatField()
@@ -57,11 +58,11 @@ class Ngoprojs(models.Model):
     geom = models.PointField(srid=4326)
 
     def __str__(self):
-        return self.project_na
+        return self.project_name
 
 
 class AOF(models.Model):
-    SECTOR_ID = models.FloatField(max_length=50)
+    SECTOR_ID = models.IntegerField()
     SECTOR_NAME = models.CharField(max_length=50)
     objects = CopyManager()
 
@@ -70,7 +71,7 @@ class AOF(models.Model):
 
 
 class INSTITUTIONS(models.Model):
-    INSTITUTION_ID = models.FloatField(max_length=50)
+    INSTITUTION_ID = models.IntegerField()
     NAME = models.CharField(max_length=50)
     CONTACT = models.CharField(max_length=50)
     objects = CopyManager()
@@ -80,10 +81,12 @@ class INSTITUTIONS(models.Model):
 
 
 class NGO(models.Model):
-    NGO_ID = models.FloatField(max_length=50)
+    NGO_ID = models.IntegerField()
     NGO_NAME = models.CharField(max_length=50)
-    SECTOR_ID = models.ForeignKey(AOF, on_delete=models.CASCADE)
-    INSTIT_ID = models.ForeignKey(INSTITUTIONS, on_delete=models.CASCADE)
+    # SECTOR_ID = models.ForeignKey(AOF, on_delete=models.CASCADE)
+    SECTOR_ID = models.IntegerField()
+    # INSTIT_ID = models.ForeignKey(INSTITUTIONS, on_delete=models.CASCADE)
+    INSTIT_ID = models.IntegerField()
     Contact = models.CharField(max_length=50)
     Email = models.CharField(max_length=50)
     lat = models.FloatField()
@@ -96,9 +99,9 @@ class NGO(models.Model):
 
 
 class DONOR(models.Model):
-    DONOR_ID = models.FloatField(max_length=50)
+    DONOR_ID = models.IntegerField()
     NAME = models.CharField(max_length=50)
-    NGO_ID = models.ForeignKey(NGO, on_delete=models.CASCADE)
+    NGO_ID = models.IntegerField()
     objects = CopyManager()
 
     def __str__(self):
